@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>React ES6 Arrow Methods</title>
+        <!-- Import React and ReactDOM from UNPKG CDN -->
+        <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script>
+            // Define your React component
+            function MyComponent() {
+                const myArray = ['apple', 'banana', 'orange'];
+                const myList = myArray.map((item) => React.createElement('p', null, item));
+                return myList;
+            }
+            // Render your component
+            ReactDOM.render(React.createElement(MyComponent), document.getElementById('root'));
+        </script>
+    </body>
+</html>
