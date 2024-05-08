@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Mahasiswa extends Model
 {
     use HasFactory;
-
-    use HasFactory;
     # Tentukan nama tabel terkait
     // protected $table = 'mahasiswas'; 
     // jika aturan penamaan model dan migration singular dan plural 
@@ -41,5 +39,22 @@ class Mahasiswa extends Model
     {
         // data model Mahasiswa dimiliki oleh model Dosen melalui fk 'id_dosen'
         return $this->belongsTo('App\Models\Dosen', 'id_dosen');
+    }
+    
+    /*
+    * Relasi Many-to-Many
+    *
+    * Buat function bernama hobi(), dimana model 'Mahasiswa' memiliki relasi
+    * Many-to-Many (belongsToMany) terhadap model 'Hobi' yang terhubung oleh * tabel 'mahasiswa_hobi' masing-masing melalui 'id_mahasiswa' dan 'id_hobi' 
+    */
+
+    public function hobi()
+    {
+        return $this->belongsToMany(
+            Hobi::class, 
+            'mahasiswa_hobi', 
+            'id_mahasiswa', 
+            'id_hobi'
+        );
     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 
 use App\Models\Mahasiswa;
 use App\Models\Wali;
+use App\Models\Hobi;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\Dosen;
@@ -88,11 +89,18 @@ class RelasiSeeder extends Seeder
         # Informasi ketika semua wali telah diisi.
         $this->command->info('Data mahasiswa dan wali telah diisi!');
         
-        /***********************************
-         *** SEEDER HOBI UNTUK RELASI SELANJUTNYA ***
-         ***********************************/
+        # SIAPKAN SEEDER HOBI DISINI 
+        DB::table('hobis')->delete(); 
+        DB::table('mahasiswa_hobi')->delete();
 
-        //
+        # Isi tabel hobi
+        $menulis = Hobi::create(array('hobi' => 'Menulis')); 
+        $baca_buku = Hobi::create(array('hobi' => 'Baca Buku'));
         
+        # Hubungkan Mahasiswa dengan Hobinya masing-masing 
+        $ani->hobi()->attach($menulis->id); 
+        $budi->hobi()->attach($baca_buku->id); 
+        $nia->hobi()->attach($menulis->id);
+                
     }
 }

@@ -45,3 +45,31 @@ Route::get('relasi-3', function () {
         echo '<li> Nama : ' . $temp->nama . ' <strong>' . $temp->nim . '</strong></li>';
     }
 });
+
+
+// Relasi Many To Many 
+Route::get('relasi-4', function () {
+    # Bila kita ingin melihat hobi saya
+    $ani = App\Models\Mahasiswa::where('nama', '=', 'Ani')->first();
+    
+    # Tampilkan seluruh hobi si ani
+    foreach ($ani->hobi as $temp) {
+        echo '<li>' . $temp->hobi . '</li>';
+    }
+});
+
+Route::get('relasi-5', function () {
+    # Temukan hobi Menulis
+    $menulis = App\Models\Hobi::where('hobi', '=', 'Menulis')->first();
+    
+    # Tampilkan semua mahasiswa yang punya hobi menulis
+    foreach ($menulis->mahasiswa as $temp) {
+        echo '<li> Nama : ' . $temp->nama . ' <strong>' . $temp->nim . '</strong></li>';
+    }
+});
+
+Route::get('semuarelasi', function () {
+    $semuaRelasi = App\Models\Mahasiswa::with('hobi', 'wali', 'dosen')->get();
+
+    return view('semuaRelasi', compact('semuaRelasi'));
+});
