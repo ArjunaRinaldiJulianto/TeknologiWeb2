@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <meta charset="utf-8" />
+        <title>Belajar Reactjs</title>
+        <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+        <script type="text/babel">
+            class Message extends React.Component {
+                render() {
+                    return (
+                        <div>
+                            <small>{this.props.sender}:</small>
+                            <p>{this.props.content}</p>
+                            <hr />
+                        </div>
+                    );
+                }
+            }
+            // menggunakan komponen
+            let chat = (
+                <div>
+                    <Message sender="Ani" content="Hi, Apa kabar?" /> 
+                    <Message sender="Budi" content="Kabar Baik" />
+                </div>
+            );
+            // render komponen ke RealDOM
+            ReactDOM.render(chat, document.getElementById("app"));
+        </script>
+    </body>
+</html>
