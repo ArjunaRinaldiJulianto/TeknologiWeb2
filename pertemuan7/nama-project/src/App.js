@@ -13,16 +13,25 @@ import './App.css';
 //   );
 // }
 
+// array untuk menyimpan data
+const phoneData = [
+  { name: "iPhone X", price: "10000000", discount: "50" },
+  { name: "Oppo Find x", price: "14000000", discount: "30" },
+  { name: "Redmi Note X", price: "5000000", discount: "42"},
+  { name: "Vivo XYZ", price: "10000000", discount: "0"},
+]
+
 // membuat komponen dengan props name, price, dan discount
 // function Product({ name, price, discount = 0 }) {
 //   return (
 //     <div>
 //       <h2>{ name }</h2>
-//       <p>
+//       {/* <p>
 //         <s>Rp { price }</s> ({ discount }%)
-//       </p>
+//       </p> */}
+//       { discount > 0 && <p><s>Rp { price }</s> ({ discount }%)</p> }
 //       <p>
-//         <b>Rp { parseInt(price) - parseInt(price) * (parseInt(discount)) / 100 }</b>
+//         <b>Rp { parseInt(price) - parseInt(price) * (parseInt(discount) / 100) }</b>
 //       </p>
 //       <hr />
 //     </div>
@@ -33,11 +42,12 @@ function Product({ name, price, discount = 0 }) {
   return (
     <div className="product">
       <h2>{name}</h2>
+      {/* <p>
+        <s>Rp { price }</s> ({ discount }%)
+      </p> */}
+      { discount > 0 && <p><s>Rp { price }</s> ({ discount }%)</p> }
       <p>
-        <s>Rp {price}</s> ({discount}%)
-      </p>
-      <p>
-        <b>Rp {parseInt(price) - parseInt(price) * parseInt(discount) / 100}</b>
+        <b>Rp { parseInt(price) - parseInt(price) * (parseInt(discount) / 100) }</b>
       </p>
       <hr />
       <style jsx>{`
@@ -88,10 +98,20 @@ function App() {
     //   </header>
     //   <MyComponent />
     // </div>
+    // <div>
+    //   <Product name="Indomie" price="3000" discount="10" />
+    //   <Product name="Kecap" price="7000" />
+    //   <Product name="Mie Sedap" price="3500" discount="5" />
+    // </div>
     <div>
-      <Product name="Indomie" price="3000" discount="10" />
-      <Product name="Kecap" price="7000" />
-      <Product name="Mie Sedap" price="3500" discount="5" />
+      { phoneData.map((phone, id) => (
+        <Product 
+          key = { id } 
+          name = { phone.name } 
+          price = { phone.price } 
+          discount = { phone.discount } 
+        />
+      )) }
     </div>
   );
 }
